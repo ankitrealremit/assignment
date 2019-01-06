@@ -1,5 +1,5 @@
 ########################################################################################
-#author: Ankit Kumar
+author: Ankit Kumar
 File comparision Utility
 #########################################################################################
 1) The application has been designed for comparing two files
