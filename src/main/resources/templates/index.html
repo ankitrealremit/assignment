@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Compare Files</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <script>
+            function validate_fileupload(input_element) {
+                var selectedFirstFile = document.getElementById("firstFile").files.length <= 0;
+                var selectedSecondFile = document.getElementById("secondFile").files.length <= 0;
+
+                if (selectedFirstFile) {
+                    alert("Please select the first file to compare");
+                    return false;
+                }
+                else if (selectedSecondFile) {
+                    alert("Please select the second file to compare");
+                    return false;
+                }
+                var firstFileName = document.getElementById("firstFile").value;
+                var secondFileName = document.getElementById("secondFile").value;
+                var firstFileExtension = firstFileName.split('.').pop();
+                var secondFileExtension = secondFileName.split('.').pop();
+                //alert("FirstFileName Ext " + firstFileName.split('.').pop())
+                //alert("SecondFileName Ext " + secondFileName.split('.').pop())
+                if (firstFileExtension != secondFileExtension) {
+                    alert("Please select the same type of file for comparision.");
+                    return false;
+                }
+
+            }
+        </script>
+    </head>
+<body>
+<!--/*@thymesVar id="message" type=""*/-->
+
+
+<div class="row">
+    <div class="col-sm-3 col-md-3 col-lg-3">
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5">
+
+        <form action="/files" enctype="multipart/form-data" method="POST" onsubmit="return validate_fileupload()">
+
+            <br>
+            <div class="form-group">
+                <div class="alert alert-success" role="alert" th:if="${isIdentical} == true">
+                    <p>File are Identical!</p>
+                </div>
+                <!--/*@thymesVar id="isIdentical" type=""*/-->
+                <div class="alert alert-danger" role="alert" th:if="${isIdentical} == false">
+                    <p>Oops! Files are not Identical</p>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="firstFile">Select First file: </label>
+                <input type="file" name="firstFile" id="firstFile" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="secondFile">Select Second file: </label>
+                <input type="file" name="secondFile" id="secondFile" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Compare</button>
+            </div>
+
+
+        </form>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    </div>
+</div>
+</body>
+</html>
