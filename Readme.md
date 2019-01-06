@@ -1,7 +1,7 @@
-#########################################################
+########################################################################################
 #author: Ankit Kumar
 File comparision Utility
-#########################################################
+#########################################################################################
 1) The application has been designed for comparing two files
 2) Application is written as Spring boot web application
 3) Follow the below steps for running the application
@@ -14,7 +14,7 @@ File comparision Utility
 Note: If this port is being used in your application please modify the property (server.port=8080)
 in application.properties file.
 
-#########################################################
+#########################################################################################
 The application has been successfully tested for txt,jpg,xlsx files.
-########################################################
+#########################################################################################
 
